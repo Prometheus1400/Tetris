@@ -49,12 +49,13 @@ public:
 class Piece_4 : public Piece { //Straight Line
 protected:
 	void setStructure() override {
+		_absYPos = -1;
 		setColor();
 		// first index is x pos, second index is y pos
-		_structure[0][0] = new Block(_color);
-		_structure[1][0] = new Block(_color);
-		_structure[2][0] = new Block(_color);
-		_structure[3][0] = new Block(_color);
+		_structure[0][1] = new Block(_color);
+		_structure[1][1] = new Block(_color);
+		_structure[2][1] = new Block(_color);
+		_structure[3][1] = new Block(_color);
 		mirrorStructureToBlocks();
 	}
 public:
@@ -64,6 +65,7 @@ public:
 class Piece_5 : public Piece { //L looking piece
 protected:
 	void setStructure() override {
+		_absYPos = -1;
 		setColor();
 		// first index is x pos, second index is y pos
 		_structure[0][1] = new Block(_color);

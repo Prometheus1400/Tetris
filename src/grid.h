@@ -7,6 +7,7 @@
 extern const size_t BLOCK_SIZE;
 extern const size_t WIDTH;
 extern const size_t HEIGHT;
+extern size_t SCORE;
 
 class GameGrid {
 private:
@@ -55,6 +56,9 @@ public:
 	void moveBlocksDown(int yLine);
 	// removes all full lines
 	void removeFullLines();
+
+	//checks if there are any blocks in the piece's spawning area
+	bool checkForGameOver();
 
 
 	// all for moving / rotating the piece
@@ -116,6 +120,19 @@ int GameGrid::checkForLine() {
 	return -1;
 }
 
+bool GameGrid::checkForGameOver() {
+	size_t xStart = (WIDTH / 2) - 2;
+	size_t xEnd   = (WIDTH / 2) + 2;
+
+	for (size_t y = 0; y < 2; ++y) {
+		for (size_t x = xStart; x < xEnd; ++x) {
+			if (_grid[x][y])
+				return true;
+		}
+	}
+	return false;
+}
+
 void GameGrid::flashLine(int yLine) {
 	for (size_t x = 0; x < WIDTH; ++x) {
 		_grid[x][yLine]->setColor(sf::Color::White);
@@ -139,6 +156,7 @@ void GameGrid::clearLine(int yLine) {
 		if (_grid[x][yLine] != nullptr) {
 			delete _grid[x][yLine];
 			_grid[x][yLine] = nullptr;
+			SCORE += 10;
 		} else {
 			throw std::invalid_argument("trying to delete not-full line");
 		}

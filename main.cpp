@@ -7,6 +7,7 @@
 const size_t BLOCK_SIZE = 50;  // size in pixels
 const size_t WIDTH  = 15;      // size in blocks/grid sections
 const size_t HEIGHT = 20;      // size in blocks/grid sections
+size_t SCORE  = 0;
 
 int main() {
 	srand(time(0));
@@ -49,9 +50,12 @@ int main() {
         	clock.restart();
         }
 
+        if (Grid.checkForGameOver())
+        	window.close();
         window.clear(sf::Color(82, 86, 87, 56));
         Grid.drawGrid();
         window.display();
     }
+    std::cout << "Game Over with a Score of: " << SCORE << std::endl;
     return 0;
 }
