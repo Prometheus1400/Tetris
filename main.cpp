@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "src/grid.h"
 
-const size_t BLOCK_SIZE = 50;  // size in pixels
+const size_t BLOCK_SIZE = 100;  // size in pixels
 const size_t WIDTH  = 15;      // size in blocks/grid sections
 const size_t HEIGHT = 20;      // size in blocks/grid sections
 size_t SCORE  = 0;
